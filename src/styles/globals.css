@@ -1,16 +1,14 @@
-﻿@import 'tailwindcss/base';
+@import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-:root {
-  --color-primary: #047857;
-  --color-secondary: #10b981;
-}
-
-* {
+/* ── Base resets ─────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html {
@@ -19,183 +17,31 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   background-color: #ffffff;
-  color: #1d1d1f;
+  color: #1c1c1e;
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth scrolling animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-60px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Utility classes */
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.animate-slide-in-left {
-  animation: slideInLeft 0.8s ease-out forwards;
-}
-
-.animate-slide-in-right {
-  animation: slideInRight 0.8s ease-out forwards;
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-scale-in {
-  animation: scaleIn 0.6s ease-out forwards;
-}
-
-/* Header */
-header {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
-
-nav {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-nav h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.5px;
-  color: #1d1d1f;
-}
-
-/* Layout spacing */
-section {
-  scroll-margin-top: 80px;
-}
-
-main {
-  padding-top: 80px;
-}
-
-/* Typography */
-h1 {
+/* ── Typography defaults ─────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
-  letter-spacing: -1px;
+  letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
-h2 {
-  font-weight: 600;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
+/* ── Scroll-reveal animation ─────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-p {
-  font-weight: 400;
-  letter-spacing: 0px;
-  line-height: 1.6;
-  color: #666;
-}
-
-/* Buttons */
-button {
-  border: none;
-  border-radius: 12px;
-  font-weight: 500;
-  letter-spacing: -0.3px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-}
-
-button:hover {
-  transform: scale(1.02);
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-/* Gradient text */
-.text-gradient {
-  background: linear-gradient(135deg, #047857 0%, #10b981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Footer */
-footer {
-  background: #f5f5f7;
-  border-top: 1px solid #e5e5e7;
-}
-
-/* Scroll reveal effect */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(24px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
@@ -204,15 +50,92 @@ footer {
   transform: translateY(0);
 }
 
-/* Glass morphism effect */
-.glass {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
+/* ── Page-load animations ────────────────────────────────────────────────── */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out both;
 }
 
-/* Selection */
+/* ── Glass morphism card ─────────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+}
+
+/* ── Gradient text ───────────────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #047857 0%, #c9a96e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Slow spin (circular tagline watermark) ──────────────────────────────── */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.animate-spin-slow { animation: spin-slow 80s linear infinite; }
+
+/* ── Hide scrollbar (used for horizontal tab rows) ───────────────────────── */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Section anchor offset ───────────────────────────────────────────────── */
+section { scroll-margin-top: 80px; }
+
+/* ── Process flow connector sweep ───────────────────────────────────────── */
+@keyframes sweepRight {
+  0%   { opacity: 0; transform: translateX(-100%); }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+/* ── Digester bubble float ───────────────────────────────────────────────── */
+@keyframes bubbleFloat {
+  0%   { transform: translateY(0) scale(1); opacity: 0.55; }
+  80%  { opacity: 0.25; }
+  100% { transform: translateY(-56px) scale(0.2); opacity: 0; }
+}
+
+/* ── SCADA status pulse ──────────────────────────────────────────────────── */
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* ── Farm scene — crop sway ──────────────────────────────────────────────── */
+@keyframes stalkSway {
+  0%, 100% { transform: rotate(-3deg); }
+  50%       { transform: rotate(3deg); }
+}
+
+/* ── Farm scene — cloud drift ────────────────────────────────────────────── */
+@keyframes cloudDrift {
+  0%   { transform: translateX(-22px); }
+  100% { transform: translateX(22px); }
+}
+
+/* ── Farm scene — sun glow ───────────────────────────────────────────────── */
+@keyframes sunGlow {
+  0%, 100% { opacity: 0.75; }
+  50%       { opacity: 1; }
+}
+
+/* ── Farm scene — dust rise ──────────────────────────────────────────────── */
+@keyframes dustFloat {
+  0%   { opacity: 0;    transform: translateY(0); }
+  20%  { opacity: 0.55; }
+  100% { opacity: 0;    transform: translateY(-34px); }
+}
+
+/* ── Pipe flow dash ──────────────────────────────────────────────────────── */
+@keyframes pipeDash {
+  0%   { stroke-dashoffset: 48; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ── Selection colour ────────────────────────────────────────────────────── */
 ::selection {
   background: #047857;
   color: white;
